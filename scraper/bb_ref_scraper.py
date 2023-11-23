@@ -5,7 +5,7 @@
 import pandas as pd
 from requests import get
 from bs4 import BeautifulSoup
-from utils import get_game_suffix, remove_accents_box_scores, _process_box, get_table_headers
+from scraper.utils import get_game_suffix, remove_accents_box_scores, _process_box, get_table_headers
 
 def get_standings(year):
     """

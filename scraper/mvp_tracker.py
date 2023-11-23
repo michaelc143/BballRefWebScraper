@@ -5,7 +5,7 @@
 import pandas as pd
 from requests import get
 from bs4 import BeautifulSoup
-from utils import get_table_headers
+from scraper.utils import get_table_headers
 from unidecode import unidecode
 
 def get_mvp_tracker():
