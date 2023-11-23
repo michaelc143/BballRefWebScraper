@@ -12,7 +12,7 @@
 To contribute, do the following:
 
 ```bash
-git clone
+git clone https://github.com/michaelc143/BballRefWebScraper.git
 cd bbRefScraper/
 pip install -r requirements.txt
 ```
