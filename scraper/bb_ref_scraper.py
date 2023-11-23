@@ -11,7 +11,7 @@ try:
 except:
     from scraper.utils import get_game_suffix, get_table_headers
 
-def get_standings(year):
+def get_standings(year: str) -> pd.DataFrame:
     """
     Get the standings for a conference in a given year
     Args:
@@ -50,7 +50,7 @@ def get_standings(year):
         ret_df = pd.concat([e_df, w_df], axis=1)
         return ret_df
 
-def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC'):
+def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC') -> dict:
     """
     Get the box scores for a given game between two teams on a given date.
 
