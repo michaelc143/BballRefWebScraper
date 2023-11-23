@@ -1,5 +1,5 @@
 """
-    File to test mvp_tracker.py functions
+    File to test get_player_stats.py functions
 """
 import pytest
 import pandas as pd
