@@ -7,10 +7,10 @@ from requests import get
 from bs4 import BeautifulSoup
 
 try:
-    from utils import get_game_suffix, remove_accents_box_scores, _process_box, get_table_headers
+    from utils import get_game_suffix, get_table_headers
 except:
-    from scraper.utils import get_game_suffix, remove_accents_box_scores, _process_box, get_table_headers
-    
+    from scraper.utils import get_game_suffix, get_table_headers
+
 def get_standings(year):
     """
     Get the standings for a conference in a given year
@@ -65,8 +65,8 @@ def get_draft_class(year):
         table = soup.find('table')
 
         headers = []
-        thead = table.find('thead')
-        table_headers = thead.find('tr', class_=False)
+        t_head = table.find('thead')
+        table_headers = t_head.find('tr', class_=False)
         for header in table_headers.find_all('th'):
             headers.append(header.get_text())
         headers.remove(headers[0])
@@ -81,7 +81,7 @@ def get_draft_class(year):
         df = pd.DataFrame(data, columns=headers)
         return df
     else:
-        raise Exception("Draft year not found")
+        raise RuntimeError("Draft year not found")
 
 def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC'):
     """
@@ -102,15 +102,15 @@ def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC'):
     date = pd.to_datetime(date)
     # get game data from games table for provided date
     suffix = get_game_suffix(date, team1, team2)
-    boxscore_url="https://www.basketball-reference.com"+suffix
-    response = get(boxscore_url)
+    box_score_url="https://www.basketball-reference.com"+suffix
+    response = get(box_score_url)
     dfs = []
     if stat_type == 'BASIC':
         table_selector_ids={
             team1:f"box-{team1}-game-basic",
             team2:f"box-{team2}-game-basic",
         }
-    if stat_type == 'ADVANCED':
+    elif stat_type == 'ADVANCED':
         table_selector_ids={
             team1:f"box-{team1}-game-advanced",
             team2:f"box-{team2}-game-advanced"
@@ -119,10 +119,27 @@ def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC'):
     if response.status_code==200:
         for team,selector_id in table_selector_ids.items():
             soup = BeautifulSoup(response.content, 'html.parser')
-            table = soup.select(f"#{selector_id}")
-            raw_df = pd.read_html(str(table))[0]
-            df = _process_box(raw_df)
-            df['PLAYER'] = df['PLAYER'].apply(lambda name: remove_accents_box_scores(name, team, date.year))
+            table = soup.find('table',id=selector_id)
+            headers = []
+            table_head = table.find('thead')
+            headers_row = table_head.find('tr', class_=None)
+            for row in headers_row:
+                headers.append(row.get_text())
+            while 1:
+                if '\n' in headers:
+                    headers.remove('\n')
+                else:
+                    break
+            print(headers)
+            body = table.find('tbody')
+            data = []
+            for row in body.find_all('tr', class_=lambda x: x != 'thead'):
+                row_data = []
+                row_data.append(row.find('th').find('a').get_text()) # player name
+                for td in row.find_all('td'):
+                    row_data.append(td.get_text())
+                data.append(row_data)
+            df = pd.DataFrame(data, columns=headers)
             dfs.append(df)
         return {team1: dfs[0], team2: dfs[1]}
     else:

@@ -19,22 +19,6 @@ def get_table_headers(table):
         headers.append(header.get_text())
     return headers
 
-def _process_box(df):
-    """
-    Args:
-        df (DataFrame): the raw box score df
-
-    Returns:
-        DataFrame: processed box score
-    """
-    df.columns = list(map(lambda x: x[1], list(df.columns)))
-    df.rename(columns = {'Starters': 'PLAYER'}, inplace=True)
-    if 'Tm' in df:
-        df.rename(columns = {'Tm': 'TEAM'}, inplace=True)
-    reserve_index = df[df['PLAYER']=='Reserves'].index[0]
-    df = df.drop(reserve_index).reset_index().drop('index', axis=1)
-    return df
-
 def get_game_suffix(date, team1, team2):
     """
     Navigates to the scores page of bball ref, then finds each game table
@@ -146,22 +130,3 @@ def remove_accent_name(name: str) -> str:
         player name without accents
     """
     return name.apply(unidecode)
-
-def remove_accents_box_scores(name, team, season_end_year):
-    alphabet = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY ')
-    if len(set(name).difference(alphabet))==0:
-        return name
-    r = get(f'https://www.basketball-reference.com/teams/{team}/{season_end_year}.html')
-    team_df = None
-    best_match = name
-    if r.status_code==200:
-        soup = BeautifulSoup(r.content, 'html.parser')
-        table = soup.find('table')
-        team_df = pd.read_html(str(table))[0]
-        max_matches = 0
-        for p in team_df['Player']:
-            matches = sum(l1 == l2 for l1, l2 in zip(p, name))
-            if matches>max_matches:
-                max_matches = matches
-                best_match = p
-    return best_match
