@@ -5,7 +5,7 @@ import pytest
 import pandas as pd
 from scraper.get_player_stats import get_player_stats
 
-def test_get_player_stats():
+def test_get_player_stats(delay_between_tests):
     player_df = get_player_stats('Stephen Curry')
     # check col names
     assert 'Season' and 'Age' and 'Tm' and 'Lg' and 'Pos' and 'G' and 'GS' in player_df.columns
