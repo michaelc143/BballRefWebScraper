@@ -12,7 +12,7 @@ def get_schedule(team: str, year: str) -> pd.DataFrame:
         team (str): team name to search for schedule
         year (str): schedule year to search for
     Returns:
-        df (pd.DataFrame): schedule dataframe
+        df (pd.DataFrame): schedule Dataframe
     """
     r = get(f'https://www.basketball-reference.com/teams/{team.upper()}/{year}_games.html')
     if r.status_code == 200:

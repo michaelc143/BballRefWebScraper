@@ -34,4 +34,5 @@ def get_per_game_leaders_szn(stat: str) -> pd.DataFrame:
             data.append(row_data)
         df = pd.DataFrame(data, columns=headers)
         return df
-
+    else:
+        raise ValueError("Invalid stat type")
