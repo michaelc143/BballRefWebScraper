@@ -34,3 +34,8 @@ def test_get_per_game_leaders_blk(delay_between_tests):
     df = get_per_game_leaders_szn('blk')
     ex_headers = ['Rank', 'Player', 'BPG', 'Season']
     assert all(column in df.columns for column in ex_headers)
+
+def test_get_per_game_leaders_invalid_stat(delay_between_tests):
+    """ Tests get_per_game_leaders_szn for invalid stat """
+    with pytest.raises(ValueError):
+        df = get_per_game_leaders_szn('shaq')

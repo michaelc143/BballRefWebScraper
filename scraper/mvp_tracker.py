@@ -44,6 +44,6 @@ def get_mvp_percent(player_name: str) -> str:
     filtered_df = mvp_df[mvp_df['Player'] == player_name]
     # check if player is in top 10 table
     if len(filtered_df) < 1:
-        raise Exception('Player not currently in top 10 of NBA MVP race')
+        raise RuntimeError('Player not currently in top 10 of NBA MVP race')
     player_prob = filtered_df.at[filtered_df.index[0], 'Prob%']
     return f'{player_name} has a {player_prob} chance of winning mvp!'
