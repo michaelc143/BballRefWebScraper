@@ -34,7 +34,9 @@ def get_game_suffix(date, team1, team2):
                 if 'boxscores' in anchor.attrs['href']:
                     if team1 in anchor.attrs['href'] or team2 in anchor.attrs['href']:
                         suffix = anchor.attrs['href']
-    return suffix
+        return suffix
+    else:
+        raise ValueError("Cannot find game for those two teams on that day")
 
 def create_last_name_part_of_suffix(potential_last_names):
     """

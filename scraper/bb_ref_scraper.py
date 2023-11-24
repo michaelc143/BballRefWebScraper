@@ -49,6 +49,8 @@ def get_standings(year: str) -> pd.DataFrame:
 
         ret_df = pd.concat([e_df, w_df], axis=1)
         return ret_df
+    else:
+        raise ValueError("Invalid year")
 
 def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC') -> dict:
     """
@@ -70,6 +72,7 @@ def get_box_scores(date, team1, team2, period='GAME', stat_type='BASIC') -> dict
     # get game data from games table for provided date
     suffix = get_game_suffix(date, team1, team2)
     box_score_url="https://www.basketball-reference.com"+suffix
+    print(box_score_url)
     response = get(box_score_url)
     dfs = []
     if stat_type == 'BASIC':
