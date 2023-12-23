@@ -42,7 +42,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Pylint
-      run: pylint --rcfile=pylint.ini *.py
+      run: pylint --rcfile=pylint.ini */*.py
 
   test:
     runs-on: ubuntu-latest
