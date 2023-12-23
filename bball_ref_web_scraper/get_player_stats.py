@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 try:
     from utils import get_table_headers
 except:
-    from src.utils import get_table_headers
+    from bball_ref_web_scraper.utils import get_table_headers
 
 def get_player_stats(player: str) -> pd.DataFrame:
     """

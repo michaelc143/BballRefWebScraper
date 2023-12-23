@@ -5,8 +5,12 @@
 import pandas as pd
 from requests import get
 from bs4 import BeautifulSoup
-from src.utils import get_table_headers
 from unidecode import unidecode
+
+try:
+    from utils import get_table_headers
+except:
+    from bball_ref_web_scraper.utils import get_table_headers
 
 def get_mvp_tracker():
     """

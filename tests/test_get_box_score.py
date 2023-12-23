@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from src.bb_ref_scraper import get_box_scores
+from bball_ref_web_scraper.bb_ref_scraper import get_box_scores
 
 def test_get_box_score(delay_between_tests):
     """ Tests get_box_scores """

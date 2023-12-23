@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from src.per_game_leaders import get_per_game_leaders_szn
+from bball_ref_web_scraper.per_game_leaders import get_per_game_leaders_szn
 
 def test_get_per_game_leaders_pts(delay_between_tests):
     """ Tests get_per_game_leaders_szn for pts """
