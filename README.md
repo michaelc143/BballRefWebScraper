@@ -42,6 +42,9 @@ python3 bball_ref_web_scraper/examples.py
 * BeautifulSoup
 * Unidecode
 * Requests
+* Pytest
+* Pylint
+* Coverage
 
 ## License
 
