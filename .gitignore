@@ -3,3 +3,7 @@ __pycache__
 .pytest_cache
 */__pycache__
 .coverage
+dist/
+build/
+venv/
+bball_ref_web_scraper/bball_ref_web_scraper.egg-info/
