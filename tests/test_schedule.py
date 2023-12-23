@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from scraper.schedule import get_schedule
+from src.schedule import get_schedule
 
 def test_get_schedule(delay_between_tests):
     """ Tests get_schedule """

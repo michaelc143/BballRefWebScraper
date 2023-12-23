@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from scraper.draft_class import get_draft_class
+from src.draft_class import get_draft_class
 
 def test_draft_class(delay_between_tests):
     """ Tests get_draft_class """

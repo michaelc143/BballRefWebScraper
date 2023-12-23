@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from scraper.get_player_stats import get_player_stats
+from src.get_player_stats import get_player_stats
 
 def test_get_player_stats(delay_between_tests):
     """ Tests get_player_stats """
