@@ -11,7 +11,7 @@ try:
 except:
     from bballRefWebScraper.utils import get_game_suffix, get_table_headers
 
-def get_standings(year: str) -> pd.DataFrame:
+def get_standings(year: int) -> pd.DataFrame:
     """
     Get the standings for a conference in a given year
     Args:
