@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from bball_ref_web_scraper.schedule import get_schedule
+from bballRefWebScraper.schedule import get_schedule
 
 def test_get_schedule(delay_between_tests):
     """ Tests get_schedule """

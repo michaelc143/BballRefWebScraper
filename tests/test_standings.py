@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from bball_ref_web_scraper.bb_ref_scraper import get_standings
+from bballRefWebScraper.bb_ref_scraper import get_standings
 
 def test_get_standings(delay_between_tests):
     """ Tests get_standings """

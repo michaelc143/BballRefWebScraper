@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from bball_ref_web_scraper.get_player_stats import get_player_stats
+from bballRefWebScraper.get_player_stats import get_player_stats
 
 def test_get_player_stats(delay_between_tests):
     """ Tests get_player_stats """

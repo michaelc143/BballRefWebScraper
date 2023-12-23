@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 try:
     from utils import get_game_suffix, get_table_headers
 except:
-    from bball_ref_web_scraper.utils import get_game_suffix, get_table_headers
+    from bballRefWebScraper.utils import get_game_suffix, get_table_headers
 
 def get_standings(year: str) -> pd.DataFrame:
     """

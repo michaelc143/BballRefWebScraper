@@ -1,4 +1,6 @@
 __pycache__
+tests/pytest_cache
+tests/__pycache__
 .DS_Store
 .pytest_cache
 */__pycache__
@@ -6,4 +8,4 @@ __pycache__
 dist/
 build/
 venv/
-bball_ref_web_scraper/bball_ref_web_scraper.egg-info/
+bballRefWebScraper.egg-info/

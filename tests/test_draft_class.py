@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from bball_ref_web_scraper.draft_class import get_draft_class
+from bballRefWebScraper.draft_class import get_draft_class
 
 def test_draft_class(delay_between_tests):
     """ Tests get_draft_class """

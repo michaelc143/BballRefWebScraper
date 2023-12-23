@@ -3,7 +3,7 @@
 """
 import pytest
 import pandas as pd
-from bball_ref_web_scraper.mvp_tracker import get_mvp_tracker, get_mvp_percent
+from bballRefWebScraper.mvp_tracker import get_mvp_tracker, get_mvp_percent
 
 def test_get_mvp_tracker(delay_between_tests):
     """ Tests get_mvp_tracker """
